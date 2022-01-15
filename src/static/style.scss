@@ -1,0 +1,25 @@
+/* sidebar */
+.sidebar {
+  height: 100%;
+  position: absolute;
+  img {
+    width: 80%;
+    padding: 0px 15px 15px 15px;
+  }
+  img:hover {
+    cursor: pointer;
+  }
+  .toggle-menu {
+    text-align: right;
+    padding-right: 15px;
+  }
+  .toggle-menu-collapsed {
+    text-align: center;
+    padding: 15px;
+  }
+}
+
+/* main content */
+.content {
+  margin-left: 10%;
+}
