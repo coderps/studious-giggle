@@ -15,6 +15,7 @@ import {
   faCoffee,
   faDesktop,
   faHamburger,
+  faQuidditch,
 } from "@fortawesome/free-solid-svg-icons";
 
 import logo from "../static/images/sample-logo.png";
@@ -24,6 +25,7 @@ import "../static/style.scss";
 // Sidebar Menu
 const Sidebar = (props) => {
   const [collapsed, setCollapsed] = React.useState(true);
+  const username = "Prax";
   const controller = (
     <div
       onClick={() => setCollapsed(!collapsed)}
@@ -38,29 +40,53 @@ const Sidebar = (props) => {
       <ProSidebar width={280} collapsed={collapsed}>
         <SidebarHeader>
           {controller}
-          {collapsed ? "" : <img src={logo} />}
+          {collapsed ? (
+            ""
+          ) : (
+            <img
+              src={logo}
+              alt="Company Logo"
+              onClick={() => window.open("/", "_self")}
+            />
+          )}
         </SidebarHeader>
         <SidebarContent>
+          {collapsed ? (
+            ""
+          ) : (
+            <div className="welcome">
+              Hello {username}, where can I take you?
+            </div>
+          )}
           <Menu iconShape={collapsed ? "circle" : "square"}>
             <MenuItem
-              icon={
-                <div onClick={() => window.open("/dashboard")}>
-                  <FontAwesomeIcon icon={faCoffee} />
-                </div>
-              }
-            >
-              Dashboard
-            </MenuItem>
+              icon={<FontAwesomeIcon icon={faCoffee} />}
+              onClick={() => window.open("/dashboard", "_self")}
+              children={"Dashboard"}
+            />
             <SubMenu
-              title="Components"
+              title="Resources"
               icon={<FontAwesomeIcon icon={faDesktop} />}
-            >
-              <MenuItem>Component 1</MenuItem>
-              <MenuItem>Component 2</MenuItem>
-            </SubMenu>
+              children={
+                <>
+                  <MenuItem
+                    onClick={() => window.open("text-summarization", "_self")}
+                  >
+                    Text Summarization
+                  </MenuItem>
+                  <MenuItem>Component 2</MenuItem>
+                </>
+              }
+            />
+            <MenuItem
+              icon={<FontAwesomeIcon icon={faQuidditch} />}
+              children={"Logout"}
+            />
           </Menu>
         </SidebarContent>
-        <SidebarFooter>This is a footer</SidebarFooter>
+        <SidebarFooter>
+          <div className="footer">Copyright &#169; 2022</div>
+        </SidebarFooter>
       </ProSidebar>
     </div>
   );
